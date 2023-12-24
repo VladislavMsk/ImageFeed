@@ -7,6 +7,26 @@
 
 import UIKit
 
+final class ImagesListViewController: UIViewController {
+
+    @IBOutlet private var tableView: UITableView!
+    
+    private let photoNames: [String] = Array(0..<20).map{"\($0)"}
+    private lazy var dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .long
+        formatter.timeStyle = .none
+        return formatter
+    }()
+    
+    override func viewDidLoad() {
+        tableView.contentInset = UIEdgeInsets(top: 12, left: 0, bottom: 12, right: 0)
+        super.viewDidLoad()
+    }
+
+
+}
+
 extension ImagesListViewController: UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
@@ -22,6 +42,7 @@ extension ImagesListViewController: UITableViewDelegate{
         let imageWidth = image.size.width
         let scale = imageViewWidth / imageWidth
         let cellHeight = image.size.height * scale + imageInsets.top + imageInsets.bottom
+        
         return cellHeight
     }
 }
@@ -52,41 +73,14 @@ extension ImagesListViewController{
         cell.cellImage.image = image
         cell.dataLabel.text = dateFormatter.string(from: Date())
         
+        //задал скругление картинке. Решение костыльное, надо переделать, пока не понимаю как.
+        cell.cellImage.layer.cornerRadius = 16
+        cell.cellImage.layer.masksToBounds = true
+        
         let isLiked = indexPatch.row % 2 == 0
         let likeImage = isLiked ? UIImage(named: "like") : UIImage(named: "like_no_active")
         cell.likeButton.setImage(likeImage, for: .normal)
     }
 }
 
-class ImagesListViewController: UIViewController {
-
-    @IBOutlet private var tableView: UITableView!
-    
-    private let photoNames: [String] = Array(0..<20).map{"\($0)"}
-    
-    private lazy var dateFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .long
-        formatter.timeStyle = .none
-        return formatter
-    }()
-    
-    override func viewDidLoad() {
-        //tableView.dataSource = self
-        //tableView.delegate = self
-        tableView.contentInset = UIEdgeInsets(top: 12, left: 0, bottom: 12, right: 0)
-        
-        //Задаем скругление у ячейки таблицы
-        //ImagesListCell.layer.cornerRadius = 16
-        //ImagesListCell.layer.masksToBounds = TRUE
-        //CellImage.layer.cornerRadius = 16
-        //CellImage.layer.masksToBounds = true
-        
-        tableView.register(ImagesListCell.self, forCellReuseIdentifier: ImagesListCell.reuseIdentifier)
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
-    }
-
-
-}
 
