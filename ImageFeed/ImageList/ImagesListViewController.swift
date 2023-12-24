@@ -1,10 +1,3 @@
-//
-//  ViewController.swift
-//  ImageFeed
-//
-//  Created by Vladislav Tudos on 29.11.2023.
-//
-
 import UIKit
 
 final class ImagesListViewController: UIViewController {
@@ -23,10 +16,9 @@ final class ImagesListViewController: UIViewController {
         tableView.contentInset = UIEdgeInsets(top: 12, left: 0, bottom: 12, right: 0)
         super.viewDidLoad()
     }
-
-
+    
 }
-
+// MARK: - UITableViewDelegate
 extension ImagesListViewController: UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
@@ -46,7 +38,7 @@ extension ImagesListViewController: UITableViewDelegate{
         return cellHeight
     }
 }
-
+// MARK: - UITableViewDataSource
 extension ImagesListViewController:UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return photoNames.count //тут мы возвращаем количество фоток всего

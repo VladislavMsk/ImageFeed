@@ -19,7 +19,7 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="1MT-WD-PyF">
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                                <color key="backgroundColor" name="YP White"/>
+                                <color key="backgroundColor" name="YP Black"/>
                                 <color key="separatorColor" name="YP Black"/>
                                 <color key="sectionIndexBackgroundColor" name="YP Black"/>
                                 <prototypes>
@@ -82,7 +82,6 @@
                             <constraint firstAttribute="trailing" secondItem="1MT-WD-PyF" secondAttribute="trailing" id="92Z-8Q-vs5"/>
                             <constraint firstItem="1MT-WD-PyF" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Aif-AW-Baz"/>
                             <constraint firstItem="1MT-WD-PyF" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Fkm-Q8-dw3"/>
-                            <constraint firstItem="1MT-WD-PyF" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="zfp-CV-eiA"/>
                         </constraints>
                     </view>
                     <connections>
