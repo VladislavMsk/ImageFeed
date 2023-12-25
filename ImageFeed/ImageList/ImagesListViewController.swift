@@ -2,7 +2,7 @@ import UIKit
 
 final class ImagesListViewController: UIViewController {
 
-    @IBOutlet private var tableView: UITableView!
+    @IBOutlet private weak var tableView: UITableView!
     
     private let photoNames: [String] = Array(0..<20).map{"\($0)"}
     private lazy var dateFormatter: DateFormatter = {
@@ -68,6 +68,13 @@ extension ImagesListViewController{
         //задал скругление картинке. Решение костыльное, надо переделать, пока не понимаю как.
         cell.cellImage.layer.cornerRadius = 16
         cell.cellImage.layer.masksToBounds = true
+        
+        /*задаем цвет грандиенту, пока не доделал, нет плавного перехода
+        let gradient = CAGradientLayer()
+        gradient.frame = cell.gradientView.bounds
+        gradient.colors = [UIColor.ypGradientBlack00.cgColor, UIColor.ypGradientBlack20.cgColor]
+        cell.gradientView.layer.insertSublayer(gradient, at: 0)
+        */
         
         let isLiked = indexPatch.row % 2 == 0
         let likeImage = isLiked ? UIImage(named: "like") : UIImage(named: "like_no_active")
