@@ -1,6 +1,8 @@
 import UIKit
 
 final class ImagesListViewController: UIViewController {
+    
+    private let ShowSingleImageSegueIdentifier = "ShowSingleImage"
 
     @IBOutlet private weak var tableView: UITableView!
     
@@ -12,6 +14,18 @@ final class ImagesListViewController: UIViewController {
         return formatter
     }()
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?){
+        if segue.identifier == ShowSingleImageSegueIdentifier{
+            let viewController = segue.destination as! SingleImageViewController
+            let indexPatch = sender as! IndexPath
+            let image = UIImage(named: photoNames[indexPatch.row])
+            _ = viewController.view //впиленный хак
+            viewController.SingleImage.image = image
+        }
+        else{
+            super.prepare(for: segue, sender: sender)
+        }
+    }
     override func viewDidLoad() {
         tableView.contentInset = UIEdgeInsets(top: 12, left: 0, bottom: 12, right: 0)
         super.viewDidLoad()
@@ -21,7 +35,7 @@ final class ImagesListViewController: UIViewController {
 // MARK: - UITableViewDelegate
 extension ImagesListViewController: UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        performSegue(withIdentifier: ShowSingleImageSegueIdentifier, sender: indexPath)
     }
     
     //Реализация из автоского проекта взята
@@ -81,5 +95,7 @@ extension ImagesListViewController{
         cell.likeButton.setImage(likeImage, for: .normal)
     }
 }
+
+
 
 
