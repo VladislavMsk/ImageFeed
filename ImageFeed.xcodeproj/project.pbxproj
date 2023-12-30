@@ -107,7 +107,7 @@
 		F14D4E1F2B17114F003127E5 /* ImageFeed */ = {
 			isa = PBXGroup;
 			children = (
-				F159CE232B3CA37E0076BA8A /* SingleImageViewController.swift */,
+				F1EB2EA92B40655D00B7570F /* SingleImageView */,
 				F1C815142B3AEB8700BAE5EF /* Profile */,
 				F1C7935C2B28B25B00664814 /* ImageList */,
 				F14D4E202B17114F003127E5 /* AppDelegate.swift */,
@@ -153,6 +153,14 @@
 				F1C815122B39D81E00BAE5EF /* ProfileViewController.swift */,
 			);
 			path = Profile;
+			sourceTree = "<group>";
+		};
+		F1EB2EA92B40655D00B7570F /* SingleImageView */ = {
+			isa = PBXGroup;
+			children = (
+				F159CE232B3CA37E0076BA8A /* SingleImageViewController.swift */,
+			);
+			path = SingleImageView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
