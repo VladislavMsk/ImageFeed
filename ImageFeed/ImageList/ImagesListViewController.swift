@@ -19,8 +19,10 @@ final class ImagesListViewController: UIViewController {
             let viewController = segue.destination as! SingleImageViewController
             let indexPatch = sender as! IndexPath
             let image = UIImage(named: photoNames[indexPatch.row])
-            _ = viewController.view //впиленный хак
-            viewController.SingleImage.image = image
+            //_ = viewController.view //впиленный хак
+            //viewController.SingleImage.image = image
+            viewController.image = image
+
         }
         else{
             super.prepare(for: segue, sender: sender)
