@@ -39,6 +39,7 @@ final class ProfileViewController: UIViewController{
         avatarImageView.widthAnchor.constraint(equalToConstant: 70).isActive = true
         avatarImageView.heightAnchor.constraint(equalToConstant: 70).isActive = true
         view.addSubview(avatarImageView)
+        avatarImageView.translatesAutoresizingMaskIntoConstraints = false
         avatarImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 76).isActive = true
         avatarImageView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16).isActive = true
         

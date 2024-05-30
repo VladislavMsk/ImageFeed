@@ -20,6 +20,7 @@
 		F159CE242B3CA37E0076BA8A /* SingleImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F159CE232B3CA37E0076BA8A /* SingleImageViewController.swift */; };
 		F1C7935B2B28B23C00664814 /* ImagesListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C7935A2B28B23C00664814 /* ImagesListCell.swift */; };
 		F1C815132B39D81E00BAE5EF /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C815122B39D81E00BAE5EF /* ProfileViewController.swift */; };
+		F1EC10E82C08F94C00701DC1 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1EC10E72C08F94C00701DC1 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		F159CE232B3CA37E0076BA8A /* SingleImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleImageViewController.swift; sourceTree = "<group>"; };
 		F1C7935A2B28B23C00664814 /* ImagesListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesListCell.swift; sourceTree = "<group>"; };
 		F1C815122B39D81E00BAE5EF /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		F1EC10E72C08F94C00701DC1 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +119,7 @@
 				F14D4E2E2B171151003127E5 /* LaunchScreen.storyboard */,
 				F14D4E312B171151003127E5 /* Info.plist */,
 				F14D4E292B17114F003127E5 /* ImageFeed.xcdatamodeld */,
+				F1EC10E72C08F94C00701DC1 /* Constants.swift */,
 			);
 			path = ImageFeed;
 			sourceTree = "<group>";
@@ -301,6 +304,7 @@
 				F1C7935B2B28B23C00664814 /* ImagesListCell.swift in Sources */,
 				F14D4E212B17114F003127E5 /* AppDelegate.swift in Sources */,
 				F14D4E232B17114F003127E5 /* SceneDelegate.swift in Sources */,
+				F1EC10E82C08F94C00701DC1 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

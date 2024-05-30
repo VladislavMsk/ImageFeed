@@ -150,19 +150,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Mi-xt-LFl">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Mi-xt-LFl">
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="414" placeholderIntrinsicHeight="414" image="0" translatesAutoresizingMaskIntoConstraints="NO" id="2td-03-Jq9">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" placeholderIntrinsicWidth="414" placeholderIntrinsicHeight="414" image="0" translatesAutoresizingMaskIntoConstraints="NO" id="2td-03-Jq9">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="414"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                 </subviews>
-                                <constraints>
-                                    <constraint firstItem="2td-03-Jq9" firstAttribute="top" secondItem="0Mi-xt-LFl" secondAttribute="top" id="9uD-aG-Y1C"/>
-                                    <constraint firstItem="2td-03-Jq9" firstAttribute="leading" secondItem="0Mi-xt-LFl" secondAttribute="leading" id="Hga-Dd-EQ0"/>
-                                    <constraint firstAttribute="trailing" secondItem="2td-03-Jq9" secondAttribute="trailing" id="b3r-88-w3j"/>
-                                    <constraint firstAttribute="bottom" secondItem="2td-03-Jq9" secondAttribute="bottom" id="zPO-Na-RZO"/>
-                                </constraints>
                                 <viewLayoutGuide key="contentLayoutGuide" id="L5O-2q-QXO"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="9dL-qN-gVq"/>
                                 <connections>
@@ -198,11 +193,11 @@
                         <color key="backgroundColor" name="YP Black"/>
                         <constraints>
                             <constraint firstItem="M7Y-qi-4VK" firstAttribute="top" secondItem="GBR-qv-WvX" secondAttribute="top" constant="8" id="6EZ-BH-zcX"/>
-                            <constraint firstItem="GBR-qv-WvX" firstAttribute="bottom" secondItem="0Mi-xt-LFl" secondAttribute="bottom" id="AV8-RN-qqN"/>
+                            <constraint firstAttribute="bottom" secondItem="0Mi-xt-LFl" secondAttribute="bottom" id="AV8-RN-qqN"/>
                             <constraint firstItem="GBR-qv-WvX" firstAttribute="bottom" secondItem="iZa-eZ-MM4" secondAttribute="bottom" constant="51" id="AWe-yp-sib"/>
                             <constraint firstItem="M7Y-qi-4VK" firstAttribute="leading" secondItem="GBR-qv-WvX" secondAttribute="leading" constant="8" id="Ftf-Qq-3Cj"/>
                             <constraint firstItem="GBR-qv-WvX" firstAttribute="trailing" secondItem="0Mi-xt-LFl" secondAttribute="trailing" id="HCR-KC-tRe"/>
-                            <constraint firstItem="0Mi-xt-LFl" firstAttribute="top" secondItem="GBR-qv-WvX" secondAttribute="top" id="OO8-ae-JwM"/>
+                            <constraint firstItem="0Mi-xt-LFl" firstAttribute="top" secondItem="Eox-rM-etj" secondAttribute="top" id="OO8-ae-JwM"/>
                             <constraint firstItem="iZa-eZ-MM4" firstAttribute="centerX" secondItem="GBR-qv-WvX" secondAttribute="centerX" id="e0n-6f-0IM"/>
                             <constraint firstItem="0Mi-xt-LFl" firstAttribute="leading" secondItem="GBR-qv-WvX" secondAttribute="leading" id="peQ-K3-HIg"/>
                         </constraints>
