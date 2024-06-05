@@ -13,7 +13,9 @@ final class SingleImageViewController: UIViewController {
         didSet {
             guard isViewLoaded else {return}
             SingleImage.image = image
+            SingleImage.frame.size = image.size
             rescaleAndCenterImageInScrollView(image: image)
+            
         }
     }
     
@@ -55,8 +57,7 @@ final class SingleImageViewController: UIViewController {
         scrollView.minimumZoomScale  = 0.1
         scrollView.maximumZoomScale = 1.5
         SingleImage.image = image
-        rescaleAndCenterImageInScrollView(image: image) //приложение крашится только после вызова функции здесь, если этот участок кода закоментировать - все ок
-        
+        rescaleAndCenterImageInScrollView(image: image)
         
     }
 }

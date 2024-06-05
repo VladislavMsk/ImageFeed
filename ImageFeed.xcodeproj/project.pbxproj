@@ -21,7 +21,7 @@
 		F1C7935B2B28B23C00664814 /* ImagesListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C7935A2B28B23C00664814 /* ImagesListCell.swift */; };
 		F1C815132B39D81E00BAE5EF /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C815122B39D81E00BAE5EF /* ProfileViewController.swift */; };
 		F1EC10E82C08F94C00701DC1 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1EC10E72C08F94C00701DC1 /* Constants.swift */; };
-		F1EC10EB2C0B288600701DC1 /* AuthViewController.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1EC10EA2C0B288600701DC1 /* AuthViewController.swift.swift */; };
+		F1EC10EB2C0B288600701DC1 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1EC10EA2C0B288600701DC1 /* AuthViewController.swift */; };
 		F1EC10ED2C0B462E00701DC1 /* WebViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1EC10EC2C0B462E00701DC1 /* WebViewViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -61,7 +61,7 @@
 		F1C7935A2B28B23C00664814 /* ImagesListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesListCell.swift; sourceTree = "<group>"; };
 		F1C815122B39D81E00BAE5EF /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		F1EC10E72C08F94C00701DC1 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		F1EC10EA2C0B288600701DC1 /* AuthViewController.swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift.swift; sourceTree = "<group>"; };
+		F1EC10EA2C0B288600701DC1 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		F1EC10EC2C0B462E00701DC1 /* WebViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -174,7 +174,7 @@
 		F1EC10E92C0B287800701DC1 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
-				F1EC10EA2C0B288600701DC1 /* AuthViewController.swift.swift */,
+				F1EC10EA2C0B288600701DC1 /* AuthViewController.swift */,
 				F1EC10EC2C0B462E00701DC1 /* WebViewViewController.swift */,
 			);
 			path = Auth;
@@ -319,7 +319,7 @@
 				F1C7935B2B28B23C00664814 /* ImagesListCell.swift in Sources */,
 				F14D4E212B17114F003127E5 /* AppDelegate.swift in Sources */,
 				F14D4E232B17114F003127E5 /* SceneDelegate.swift in Sources */,
-				F1EC10EB2C0B288600701DC1 /* AuthViewController.swift.swift in Sources */,
+				F1EC10EB2C0B288600701DC1 /* AuthViewController.swift in Sources */,
 				F1EC10E82C08F94C00701DC1 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

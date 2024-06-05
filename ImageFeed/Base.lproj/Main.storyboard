@@ -313,6 +313,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="FBh-GD-0wS"/>
+                    <connections>
+                        <outlet property="webView" destination="JoY-xb-8gx" id="2C2-Bo-8Wd"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aA2-RJ-KBC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
