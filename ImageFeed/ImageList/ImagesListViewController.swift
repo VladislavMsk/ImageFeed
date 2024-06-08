@@ -79,7 +79,6 @@ extension ImagesListViewController{
         cell.cellImage.image = image
         cell.dataLabel.text = dateFormatter.string(from: Date())
         
-        //задал скругление картинке. Решение костыльное, надо переделать, пока не понимаю как.
         cell.cellImage.layer.cornerRadius = 16
         cell.cellImage.layer.masksToBounds = true
         

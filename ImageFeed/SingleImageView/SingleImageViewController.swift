@@ -9,32 +9,20 @@ import Foundation
 import UIKit
 
 final class SingleImageViewController: UIViewController {
+    
+    @IBOutlet private var singleImage: UIImageView! //если убрать private, код работает
+    @IBOutlet weak var scrollView: UIScrollView!
+    
     var image: UIImage! {
         didSet {
             guard isViewLoaded else {return}
-            SingleImage.image = image
-            SingleImage.frame.size = image.size
+            singleImage.image = image
+            singleImage.frame.size = image.size
             rescaleAndCenterImageInScrollView(image: image)
             
         }
     }
-    
-    @IBOutlet private var SingleImage: UIImageView! //если убрать private, код работает
-    @IBOutlet weak var scrollView: UIScrollView!
-    
-    @IBAction private func didTapBackButton() {
-           dismiss(animated: true, completion: nil)
-       }
-    
-    @IBAction private func didTapShareButton(){
-        let share = UIActivityViewController(
-            activityItems: [image],
-            applicationActivities: nil
-        )
-        present(share, animated: true, completion: nil)
-    }
-    
-    
+    // MARK: rescaleAndCenterImageInScrollView()
     private func rescaleAndCenterImageInScrollView(image: UIImage) {
         let minZoomScale = scrollView.minimumZoomScale
         let maxZoomScale = scrollView.maximumZoomScale
@@ -56,15 +44,28 @@ final class SingleImageViewController: UIViewController {
         super.viewDidLoad()
         scrollView.minimumZoomScale  = 0.1
         scrollView.maximumZoomScale = 1.5
-        SingleImage.image = image
+        singleImage.image = image
         rescaleAndCenterImageInScrollView(image: image)
         
+    }
+    
+    //MARK: didTapBackButton()
+    @IBAction private func didTapBackButton() {
+        dismiss(animated: true, completion: nil)
+    }
+    //MARK: didTapShareButton()
+    @IBAction private func didTapShareButton(){
+        let share = UIActivityViewController(
+            activityItems: [image],
+            applicationActivities: nil
+        )
+        present(share, animated: true, completion: nil)
     }
 }
 
 //MARK: - UIScrollViewDelegate
 extension SingleImageViewController:UIScrollViewDelegate{
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
-        SingleImage
+        singleImage
     }
 }

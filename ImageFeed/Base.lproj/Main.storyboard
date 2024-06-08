@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="z2y-Fx-dsK">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="xrm-sV-8Bh">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -210,8 +210,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="qDL-uw-YW8"/>
                     <connections>
-                        <outlet property="SingleImage" destination="2td-03-Jq9" id="Rua-dt-CVp"/>
                         <outlet property="scrollView" destination="0Mi-xt-LFl" id="zNJ-IE-LbP"/>
+                        <outlet property="singleImage" destination="2td-03-Jq9" id="Rua-dt-CVp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="inf-VB-yiI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -302,11 +302,18 @@
                                     <wkPreferences key="preferences"/>
                                 </wkWebViewConfiguration>
                             </wkWebView>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="nMh-io-wbs">
+                                <rect key="frame" x="0.0" y="103" width="393" height="4"/>
+                                <color key="progressTintColor" name="YP Black"/>
+                            </progressView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="PrF-J8-1KH"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="nMh-io-wbs" firstAttribute="top" secondItem="PrF-J8-1KH" secondAttribute="top" id="3dc-8R-uW2"/>
                             <constraint firstItem="JoY-xb-8gx" firstAttribute="leading" secondItem="SBs-mx-Z74" secondAttribute="leadingMargin" id="ES3-94-VXs"/>
+                            <constraint firstItem="PrF-J8-1KH" firstAttribute="trailing" secondItem="nMh-io-wbs" secondAttribute="trailing" id="XvU-ir-UGX"/>
+                            <constraint firstItem="nMh-io-wbs" firstAttribute="leading" secondItem="PrF-J8-1KH" secondAttribute="leading" id="abh-mU-Ig1"/>
                             <constraint firstAttribute="trailingMargin" secondItem="JoY-xb-8gx" secondAttribute="trailing" id="bUL-xf-ycq"/>
                             <constraint firstItem="JoY-xb-8gx" firstAttribute="top" secondItem="PrF-J8-1KH" secondAttribute="top" id="bu9-Cw-r9V"/>
                             <constraint firstAttribute="bottomMargin" secondItem="JoY-xb-8gx" secondAttribute="bottom" id="iMd-T8-63n"/>
@@ -314,6 +321,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="FBh-GD-0wS"/>
                     <connections>
+                        <outlet property="progressView" destination="nMh-io-wbs" id="lij-N9-hAF"/>
                         <outlet property="webView" destination="JoY-xb-8gx" id="2C2-Bo-8Wd"/>
                     </connections>
                 </viewController>
