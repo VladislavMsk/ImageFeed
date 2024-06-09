@@ -40,7 +40,7 @@ final class ProfileViewController: UIViewController{
         avatarImageView.heightAnchor.constraint(equalToConstant: 70).isActive = true
         view.addSubview(avatarImageView)
         avatarImageView.translatesAutoresizingMaskIntoConstraints = false
-        avatarImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 76).isActive = true
+        avatarImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 32).isActive = true
         avatarImageView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16).isActive = true
         
         }
@@ -53,7 +53,7 @@ final class ProfileViewController: UIViewController{
         nameLabel.textColor = .ypWhite
         nameLabel.font = .boldSystemFont(ofSize: 23)
         
-        nameLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 154).isActive = true
+        nameLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 110).isActive = true
         nameLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16).isActive = true
     }
     
@@ -65,7 +65,7 @@ final class ProfileViewController: UIViewController{
         loginName.textColor = .ypGray
         loginName.font = .systemFont(ofSize: 13)
         
-        loginName.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 180).isActive = true
+        loginName.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 144).isActive = true
         loginName.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16).isActive = true
     }
     
@@ -77,7 +77,7 @@ final class ProfileViewController: UIViewController{
         descriptionLabel.textColor = .ypWhite
         descriptionLabel.font = .systemFont(ofSize: 13)
         
-        descriptionLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 206).isActive = true
+        descriptionLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 168).isActive = true
         descriptionLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16).isActive = true
     }
     
@@ -87,12 +87,12 @@ final class ProfileViewController: UIViewController{
             target: ProfileViewController.self,
             action: #selector(Self.didTapButton))
         view.addSubview(logoutButton)
-        logoutButton.tintColor = .red
+        logoutButton.tintColor = .ypRed
         logoutButton.translatesAutoresizingMaskIntoConstraints = false
         logoutButton.widthAnchor.constraint(equalToConstant: 44).isActive = true
         logoutButton.heightAnchor.constraint(equalToConstant: 44).isActive = true
         
-        logoutButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 89).isActive = true
+        logoutButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 45).isActive = true
         logoutButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16).isActive = true
     }
         

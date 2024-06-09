@@ -9,7 +9,10 @@ import Foundation
 import UIKit
 
 final class AuthViewController: UIViewController{
+    
+    private let oauth2Service = OAuth2Service.shared
     private let AuthViewControllerID = "ShowWebView"
+    
     
     private func configureBackButton() {
         navigationController?.navigationBar.backIndicatorImage = UIImage(named: "nav_back_button")
@@ -22,7 +25,26 @@ final class AuthViewController: UIViewController{
         super.viewDidLoad()
         configureBackButton()
     }
+    
+    
 }
+
+final class OAuth2Service {
+    static let shared = OAuth2Service()
+    private init() {}
+    //...
+}
+/*
+func makeOAuthTokenRequest(code: String) -> URLRequest{
+    let baseUrl = URL(string: "https://unsplash.com")!
+    let name = URL(string: "/oauth/token"
+                   + "?client_id=\(accessKey)"
+                   + "&&client_secret=\(secretKey)"
+                   + "&&redirect_uri=\(redirectURI)"
+                   + "&&code=\(code)"
+                   + "&&grant_type=authorization_code",
+    )!
+}*/
 
 extension AuthViewController: WebViewViewControllerDelegate{
     func webViewViewController(_ vc: WebViewViewController, didAuthenticateWithCode code: String) {
