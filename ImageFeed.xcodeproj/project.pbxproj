@@ -26,7 +26,6 @@
 		F1EC10EF2C15F2EC00701DC1 /* URLSession+data.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1EC10EE2C15F2EC00701DC1 /* URLSession+data.swift */; };
 		F1EC10F12C18671200701DC1 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1EC10F02C18671200701DC1 /* SplashViewController.swift */; };
 		F1EC10F32C18A20F00701DC1 /* OAuth2Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1EC10F22C18A20F00701DC1 /* OAuth2Service.swift */; };
-		F1EC10F52C18A24F00701DC1 /* OAuth2TokenStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1EC10F42C18A24F00701DC1 /* OAuth2TokenStorage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,7 +69,6 @@
 		F1EC10EE2C15F2EC00701DC1 /* URLSession+data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+data.swift"; sourceTree = "<group>"; };
 		F1EC10F02C18671200701DC1 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		F1EC10F22C18A20F00701DC1 /* OAuth2Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuth2Service.swift; sourceTree = "<group>"; };
-		F1EC10F42C18A24F00701DC1 /* OAuth2TokenStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuth2TokenStorage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,11 +181,10 @@
 		F1EC10E92C0B287800701DC1 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
+				F1EC10F72C1DEF1200701DC1 /* OAuth2 */,
 				F1EC10EA2C0B288600701DC1 /* AuthViewController.swift */,
 				F1EC10EC2C0B462E00701DC1 /* WebViewViewController.swift */,
 				F1EC10EE2C15F2EC00701DC1 /* URLSession+data.swift */,
-				F1EC10F22C18A20F00701DC1 /* OAuth2Service.swift */,
-				F1EC10F42C18A24F00701DC1 /* OAuth2TokenStorage.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -198,6 +195,14 @@
 				F1EC10F02C18671200701DC1 /* SplashViewController.swift */,
 			);
 			path = SplashViewController;
+			sourceTree = "<group>";
+		};
+		F1EC10F72C1DEF1200701DC1 /* OAuth2 */ = {
+			isa = PBXGroup;
+			children = (
+				F1EC10F22C18A20F00701DC1 /* OAuth2Service.swift */,
+			);
+			path = OAuth2;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -337,7 +342,6 @@
 				F1EC10F12C18671200701DC1 /* SplashViewController.swift in Sources */,
 				F14D4E2B2B17114F003127E5 /* ImageFeed.xcdatamodeld in Sources */,
 				F159CE242B3CA37E0076BA8A /* SingleImageViewController.swift in Sources */,
-				F1EC10F52C18A24F00701DC1 /* OAuth2TokenStorage.swift in Sources */,
 				F1C7935B2B28B23C00664814 /* ImagesListCell.swift in Sources */,
 				F14D4E212B17114F003127E5 /* AppDelegate.swift in Sources */,
 				F1EC10EF2C15F2EC00701DC1 /* URLSession+data.swift in Sources */,

@@ -55,6 +55,11 @@ final class SingleImageViewController: UIViewController {
     }
     //MARK: didTapShareButton()
     @IBAction private func didTapShareButton(){
+
+        guard let image = image else{
+            print("Не смогли получить изображение для кнопки. Ошибка в функции didTapShareButton")
+            return
+        }
         let share = UIActivityViewController(
             activityItems: [image],
             applicationActivities: nil

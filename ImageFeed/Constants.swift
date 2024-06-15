@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+//тут все ок
 enum Constants{
     static let accessKey = "COl5jnOjpKOcfz3C8DxD3B_chQqOMGKt3BZjvnepi3g"
     static let secretKey = "ZwMkKG2P7nXAGMiKomSuFa5IK3G67g4Le59C0UYyjYg"
