@@ -51,6 +51,7 @@ final class OAuth2Service {
             if let error = error {
                 DispatchQueue.main.async {
                     completion(.failure(error))
+                    print(error)
                 }
                 return
             }
@@ -59,6 +60,7 @@ final class OAuth2Service {
                 let error = NSError(domain: "HTTP", code: (response as? HTTPURLResponse)?.statusCode ?? -1, userInfo: nil)
                 DispatchQueue.main.async {
                     completion(.failure(error))
+                    print(error)
                 }
                 return
             }
@@ -67,6 +69,7 @@ final class OAuth2Service {
                 let error = NSError(domain: "Data", code: -1, userInfo: nil)
                 DispatchQueue.main.async {
                     completion(.failure(error))
+                    print(error)
                 }
                 return
             }
@@ -77,10 +80,12 @@ final class OAuth2Service {
                 OAuth2TokenStorage.shared.token = response.accessToken
                 DispatchQueue.main.async {
                     completion(.success(response.accessToken))
+                    print("success recive token")
                 }
             } catch {
                 DispatchQueue.main.async {
                     completion(.failure(error))
+                    print(error)
                 }
             }
         }
