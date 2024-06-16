@@ -51,7 +51,10 @@ final class AuthViewController: UIViewController, WebViewViewControllerDelegate 
 extension AuthViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == showWebViewSegue {
-            let viewController  = segue.destination as! WebViewViewController
+            guard let viewController  = segue.destination as? WebViewViewController else {
+                print("segue.destination as! WebViewViewController не смог преобразовать")
+                return
+            }
             viewController.authViewDelegate = self
         } else {
             super.prepare(for: segue, sender: sender)

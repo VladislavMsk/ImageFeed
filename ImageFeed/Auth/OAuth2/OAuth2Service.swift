@@ -41,8 +41,12 @@ final class OAuth2Service {
         return request
     }
     
+    //MARK: - fetchAuthToken
     func fetchAuthToken(code: String, completion: @escaping (Result<String,Error>) -> Void) {
-        guard let urlRequest = makeOAuthTokenRequest(code: code) else { return }
+        guard let urlRequest = makeOAuthTokenRequest(code: code) else {
+            print("Не произошла распаковка urlRequest в fetchAuthToken")
+            return
+        }
         let task = URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
             if let error = error {
                 DispatchQueue.main.async {
