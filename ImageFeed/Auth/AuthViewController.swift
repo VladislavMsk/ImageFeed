@@ -1,5 +1,6 @@
 import Foundation
 import UIKit
+import ProgressHUD
 
 //MARK: - protocol AuthViewControllerDelegate
 protocol AuthViewControllerDelegate: AnyObject {
@@ -17,11 +18,13 @@ final class AuthViewController: UIViewController, WebViewViewControllerDelegate 
     
     func webViewViewController(_ vc: WebViewViewController, didAuthenticateWithCode code: String) {
         vc.dismiss(animated: true)
+        ProgressHUD.animate()
         oauth2Service.fetchAuthToken(code: code) { result in
             switch result {
             case .success(let token):
                 self.oauth2TokenStorage.token = token
                 self.delegate?.didAuthenticate(self)
+                ProgressHUD.dismiss()
             case .failure(let error):
                 print("Failed to fetch OAuth token with error: \(error)")
             }

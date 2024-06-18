@@ -132,13 +132,13 @@
             filePath = "ImageFeed/Auth/AuthViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "14"
-            endingLineNumber = "14"
+            startingLineNumber = "15"
+            endingLineNumber = "15"
             landmarkName = "AuthViewController"
             landmarkType = "3">
             <Locations>
                <Location
-                  uuid = "AFE6943E-6D29-4F3E-B76A-7DE610E9C77E - 3ea691bc45e8698f"
+                  uuid = "AFE6943E-6D29-4F3E-B76A-7DE610E9C77E - 3ea691bc45e869ae"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -148,11 +148,11 @@
                   urlString = "file:///Users/vladislavtudos/Documents/ProjectXCode/setupProject/ImageFeed/ImageFeed/Auth/AuthViewController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "14"
-                  endingLineNumber = "14">
+                  startingLineNumber = "15"
+                  endingLineNumber = "15">
                </Location>
                <Location
-                  uuid = "AFE6943E-6D29-4F3E-B76A-7DE610E9C77E - cf53ce2053aeb184"
+                  uuid = "AFE6943E-6D29-4F3E-B76A-7DE610E9C77E - cf53ce2053aeb1a5"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -162,8 +162,8 @@
                   urlString = "file:///Users/vladislavtudos/Documents/ProjectXCode/setupProject/ImageFeed/ImageFeed/Auth/AuthViewController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "14"
-                  endingLineNumber = "14">
+                  startingLineNumber = "15"
+                  endingLineNumber = "15">
                </Location>
             </Locations>
          </BreakpointContent>

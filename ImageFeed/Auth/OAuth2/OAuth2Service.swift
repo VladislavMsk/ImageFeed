@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import ProgressHUD
 
 struct OAuthTokenResponseBody: Decodable {
     let accessToken: String
@@ -22,6 +23,11 @@ struct OAuthTokenResponseBody: Decodable {
 }
 //MARK: - OAuth2Service
 final class OAuth2Service {
+    
+    private let urlSession = URLSession.shared
+    private var task: URLSessionTask?
+    private var lastCode:String?
+    
     static let shared = OAuth2Service()
     private init() {}
     private func makeOAuthTokenRequest(code: String) -> URLRequest? {
@@ -43,6 +49,8 @@ final class OAuth2Service {
     
     //MARK: - fetchAuthToken
     func fetchAuthToken(code: String, completion: @escaping (Result<String,Error>) -> Void) {
+        assert(Thread.isMainThread)
+        
         guard let urlRequest = makeOAuthTokenRequest(code: code) else {
             print("Не произошла распаковка urlRequest в fetchAuthToken")
             return
