@@ -5,38 +5,30 @@
 //  Created by Vladislav Tudos on 11.06.2024.
 //
 
-import Foundation
-import ProgressHUD
 
-struct OAuthTokenResponseBody: Decodable {
-    let accessToken: String
-    let tokenType: String
-    let scope: String
-    let createdAt: Int
-    
-    enum CodingKeys: String, CodingKey{
-        case accessToken = "access_token"
-        case tokenType = "token_type"
-        case scope = "scope"
-        case createdAt = "created_at"
-    }
+import Foundation
+import UIKit
+
+
+enum AuthServiceError: Error {
+    case invalidRequest
 }
-//MARK: - OAuth2Service
+
 final class OAuth2Service {
-    
-    private let urlSession = URLSession.shared
-    private var task: URLSessionTask?
-    private var lastCode:String?
-    
     static let shared = OAuth2Service()
     private init() {}
+    private let urlSession = URLSession.shared
+    
+    private var task: URLSessionTask?
+    private var lastCode: String?
+    
     private func makeOAuthTokenRequest(code: String) -> URLRequest? {
-        let urlString = "https://unsplash.com/oauth/token"
-        + "?client_id=\(Constants.accessKey)"
-        + "&&client_secret=\(Constants.secretKey)"
-        + "&&redirect_uri=\(Constants.redirectURI)"
-        + "&&code=\(code)"
-        + "&&grant_type=authorization_code"
+        let urlString = "https://unsplash.com/oauth/token" +
+        "?client_id=\(Constants.accessKey)" +
+        "&client_secret=\(Constants.secretKey)" +
+        "&redirect_uri=\(Constants.redirectURI)" +
+        "&code=\(code)" +
+        "&grant_type=authorization_code"
         
         guard let url = URL(string: urlString) else {
             print("Failed to create URL with baseURL and parameters.")
@@ -46,70 +38,49 @@ final class OAuth2Service {
         request.httpMethod = "POST"
         return request
     }
-    
-    //MARK: - fetchAuthToken
-    func fetchAuthToken(code: String, completion: @escaping (Result<String,Error>) -> Void) {
-        assert(Thread.isMainThread)
-        
-        guard let urlRequest = makeOAuthTokenRequest(code: code) else {
-            print("Не произошла распаковка urlRequest в fetchAuthToken")
+    func fetchOAuthToken(_ code: String, completion: @escaping (Result<String, Error>) -> Void) {
+        assert(Thread.isMainThread) //чтобы избежать гонки обращаемся к task и lastCode из главного потока
+        if task != nil { // Проверяем, выполняется ли в данный момент POST-запрос. Если да, то task != nil.
+            if lastCode != code { // Проверяем, что в последнем запросе, который сейчас в процессе выполнения, значение code такое же, как в переданном аргументе. Если значение не совпадает, нужно отменить предыдущий запрос и выполнить новый.
+                task?.cancel()
+            } else {
+                completion(.failure(AuthServiceError.invalidRequest))
+                self.task = nil
+                return
+            }
+        } else {
+            if lastCode == code { // если значение совпадает, то ничего не делаем, - мы уже получили токен и запроса POST не идет
+                completion(.failure(AuthServiceError.invalidRequest))
+                return
+            }
+        }
+        lastCode = code // запоминаем  code из запроса
+        guard let request = makeOAuthTokenRequest(code: code)
+        else {
+            DispatchQueue.main.async{
+                completion(.failure(AuthServiceError.invalidRequest))
+            }
             return
         }
-        let task = URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
-            if let error = error {
-                DispatchQueue.main.async {
-                    completion(.failure(error))
-                    print(error)
-                }
-                return
-            }
-            
-            guard let httpResponse = response as? HTTPURLResponse, (200..<300).contains(httpResponse.statusCode) else {
-                let error = NSError(domain: "HTTP", code: (response as? HTTPURLResponse)?.statusCode ?? -1, userInfo: nil)
-                DispatchQueue.main.async {
-                    completion(.failure(error))
-                    print(error)
-                }
-                return
-            }
-            
-            guard let data = data else {
-                let error = NSError(domain: "Data", code: -1, userInfo: nil)
-                DispatchQueue.main.async {
-                    completion(.failure(error))
-                    print(error)
-                }
-                return
-            }
-            
-            do {
-                let decoder = JSONDecoder()
-                let response = try decoder.decode(OAuthTokenResponseBody.self, from: data)
+        task = urlSession.objectTask(for: request) { (result: Result<OAuthTokenResponseBody, Error>) in
+            self.task = nil
+            self.lastCode = nil
+            switch result {
+            case .success(let response):
                 OAuth2TokenStorage.shared.token = response.accessToken
+                print(response.accessToken)
                 DispatchQueue.main.async {
                     completion(.success(response.accessToken))
-                    print("success recive token")
                 }
-            } catch {
+            case .failure(let error):
                 DispatchQueue.main.async {
                     completion(.failure(error))
-                    print(error)
                 }
             }
         }
-        task.resume()
     }
+    
 }
 
-//MARK: - OAuth2TokenStorage
-final class OAuth2TokenStorage {
-    var token: String? {
-        get {
-            return UserDefaults.standard.string(forKey: "OAuth2Token") ?? nil
-        }
-        set {
-            UserDefaults.standard.set(newValue, forKey: "OAuth2Token")
-        }
-    }
-    static let shared = OAuth2TokenStorage()
-}
+
+

@@ -7,97 +7,93 @@
 
 import Foundation
 import UIKit
+import Kingfisher
 
-final class ProfileViewController: UIViewController{
-    /*
-    @IBOutlet private var avatarImageView: UIImageView!
+final class ProfileViewController: UIViewController {
+    private let profileService = ProfileService.shared
+    private var profileStorage = ProfileStorage()
+    private var token = OAuth2TokenStorage.shared.token
+    private let userNameLabel = UILabel()
+    private let userMailLabel = UILabel()
+    private let greetingLabel = UILabel()
+    private var profileImageServiceObserver: NSObjectProtocol?
     
-    @IBOutlet private var nameLabel: UILabel!
-    @IBOutlet private var loginNameLabel: UILabel!
-    @IBOutlet private var descriptionLabel: UILabel!
+    var profileAvatar = UIImageView()
     
-    @IBOutlet private var logoutButton: UIButton!
-    
-    @IBAction private func didTapLogoutButton(_ sender: Any) {
-    
-     }
-     */
     override func viewDidLoad() {
         super.viewDidLoad()
-        initNameLabel()
-        initLoginName()
-        initDescriptionLabel()
-        initLogoutButton()
-        initAvatrImageView()
-        
-    }
-    
-    private func initAvatrImageView(){
-        let avatrImage = UIImage(named: "Userpick")
-        let avatarImageView = UIImageView(image: avatrImage!)
-        
-        avatarImageView.widthAnchor.constraint(equalToConstant: 70).isActive = true
-        avatarImageView.heightAnchor.constraint(equalToConstant: 70).isActive = true
-        view.addSubview(avatarImageView)
-        avatarImageView.translatesAutoresizingMaskIntoConstraints = false
-        avatarImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 32).isActive = true
-        avatarImageView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16).isActive = true
-        
+        view.backgroundColor  = UIColor(named: "YP Black")
+        profileImageServiceObserver = NotificationCenter.default.addObserver(
+            forName: ProfileImageService.didChangeNotification,
+            object: nil,
+            queue: .main)
+        { [weak self] _ in
+            guard let self = self else {return}
+            self.updateAvatar()
         }
-    
-    private func initNameLabel(){
-        let nameLabel = UILabel()
-        view.addSubview(nameLabel)
-        nameLabel.text = "Екатерина Новикова"
-        nameLabel.translatesAutoresizingMaskIntoConstraints = false
-        nameLabel.textColor = .ypWhite
-        nameLabel.font = .boldSystemFont(ofSize: 23)
+        updateAvatar()
         
-        nameLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 110).isActive = true
-        nameLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16).isActive = true
+        view.addSubview(profileAvatar)
+        profileAvatar.translatesAutoresizingMaskIntoConstraints = false
+        profileAvatar.heightAnchor.constraint(equalToConstant: 70).isActive = true
+        profileAvatar.widthAnchor.constraint(equalToConstant: 70).isActive = true
+        profileAvatar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 32).isActive = true
+        profileAvatar.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16).isActive = true
+        
+        let userNameLabel = UILabel()
+        userNameLabel.textColor = UIColor(named: "YP White")
+        userNameLabel.font = UIFont(name: "YSDisplay-Bold", size: 23)
+        view.addSubview(userNameLabel)
+        userNameLabel.translatesAutoresizingMaskIntoConstraints = false
+        userNameLabel.topAnchor.constraint(equalTo: profileAvatar.bottomAnchor, constant: 8).isActive = true
+        userNameLabel.leadingAnchor.constraint(equalTo: profileAvatar.leadingAnchor).isActive = true
+        
+        let userMailLabel = UILabel()
+        userMailLabel.textColor = UIColor(named: "YP Gray")
+        userMailLabel.font = UIFont(name: "YSDisplay-Regular", size: 13)
+        
+        view.addSubview(userMailLabel)
+        userMailLabel.translatesAutoresizingMaskIntoConstraints = false
+        userMailLabel.topAnchor.constraint(equalTo: userNameLabel.bottomAnchor, constant: 8).isActive = true
+        userMailLabel.leadingAnchor.constraint(equalTo: profileAvatar.leadingAnchor).isActive = true
+        
+        let greetingLabel = UILabel()
+        greetingLabel.textColor = UIColor(named: "YP White")
+        greetingLabel.font = UIFont(name: "YSDisplay-Regular", size: 13)
+        view.addSubview(greetingLabel)
+        greetingLabel.translatesAutoresizingMaskIntoConstraints = false
+        greetingLabel.topAnchor.constraint(equalTo: userMailLabel.bottomAnchor, constant: 8).isActive = true
+        greetingLabel.leadingAnchor.constraint(equalTo: profileAvatar.leadingAnchor).isActive = true
+        
+        updateProfileDetails(profile: profileService.profile ?? Profile(username: "no userName", name: "no firstName, no lastName", loginName: "no loginName"))
+        
+        let exitButton =  UIButton(type: .system)
+        exitButton.setImage(UIImage(systemName: "ipad.and.arrow.forward"), for: .normal)
+        exitButton.tintColor = UIColor(named: "YP Red")
+        
+        view.addSubview(exitButton)
+        exitButton.translatesAutoresizingMaskIntoConstraints = false
+        exitButton.heightAnchor.constraint(equalToConstant: 44).isActive = true
+        exitButton.widthAnchor.constraint(equalToConstant: 44).isActive = true
+        exitButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16).isActive = true
+        exitButton.centerYAnchor.constraint(equalTo: profileAvatar.centerYAnchor).isActive = true
+        
+        func updateProfileDetails(profile: Profile) {
+            
+            userNameLabel.text = profile.name
+            userMailLabel.text = profile.loginName
+            greetingLabel.text = profile.bio
+            print("\(userNameLabel.text), \(userMailLabel.text) , \(greetingLabel.text)")
+            return
+        }
     }
     
-    private func initLoginName(){
-        let loginName = UILabel()
-        view.addSubview(loginName)
-        loginName.text = "@ekaterina_nov"
-        loginName.translatesAutoresizingMaskIntoConstraints = false
-        loginName.textColor = .ypGray
-        loginName.font = .systemFont(ofSize: 13)
-        
-        loginName.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 144).isActive = true
-        loginName.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16).isActive = true
-    }
-    
-    private func initDescriptionLabel(){
-        let descriptionLabel = UILabel()
-        view.addSubview(descriptionLabel)
-        descriptionLabel.text = "Hello, world!"
-        descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
-        descriptionLabel.textColor = .ypWhite
-        descriptionLabel.font = .systemFont(ofSize: 13)
-        
-        descriptionLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 168).isActive = true
-        descriptionLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16).isActive = true
-    }
-    
-    private func initLogoutButton(){
-        let logoutButton = UIButton.systemButton(
-            with: UIImage(systemName: "ipad.and.arrow.forward")!,
-            target: ProfileViewController.self,
-            action: #selector(Self.didTapButton))
-        view.addSubview(logoutButton)
-        logoutButton.tintColor = .ypRed
-        logoutButton.translatesAutoresizingMaskIntoConstraints = false
-        logoutButton.widthAnchor.constraint(equalToConstant: 44).isActive = true
-        logoutButton.heightAnchor.constraint(equalToConstant: 44).isActive = true
-        
-        logoutButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 45).isActive = true
-        logoutButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16).isActive = true
-    }
-        
-    
-    @objc
-    func didTapButton(){
+    private func updateAvatar() {
+        guard
+            let profileImageURL = ProfileImageService.shared.profileImageURL,
+            let url = URL(string: profileImageURL)
+        else { return }
+        profileAvatar.kf.setImage(with: url)
+        print("\(profileAvatar)")
     }
 }

@@ -10,18 +10,19 @@ import UIKit
 
 final class SingleImageViewController: UIViewController {
     
-    @IBOutlet private var singleImage: UIImageView! //если убрать private, код работает
+    @IBOutlet private var imageView: UIImageView! //если убрать private, код работает
     @IBOutlet weak var scrollView: UIScrollView!
     
     var image: UIImage! {
         didSet {
             guard isViewLoaded else {return}
-            singleImage.image = image
-            singleImage.frame.size = image.size
+            imageView.image = image
+            imageView.frame.size = image.size
             rescaleAndCenterImageInScrollView(image: image)
             
         }
     }
+    
     // MARK: rescaleAndCenterImageInScrollView()
     private func rescaleAndCenterImageInScrollView(image: UIImage) {
         let minZoomScale = scrollView.minimumZoomScale
@@ -44,8 +45,9 @@ final class SingleImageViewController: UIViewController {
         super.viewDidLoad()
         scrollView.minimumZoomScale  = 0.1
         scrollView.maximumZoomScale = 1.5
-        singleImage.image = image
+        imageView.image = image
         rescaleAndCenterImageInScrollView(image: image)
+        view.backgroundColor = UIColor(named: "YP Black")
         
     }
     
@@ -55,7 +57,7 @@ final class SingleImageViewController: UIViewController {
     }
     //MARK: didTapShareButton()
     @IBAction private func didTapShareButton(){
-
+        
         guard let image = image else{
             print("Не смогли получить изображение для кнопки. Ошибка в функции didTapShareButton")
             return
@@ -71,6 +73,6 @@ final class SingleImageViewController: UIViewController {
 //MARK: - UIScrollViewDelegate
 extension SingleImageViewController:UIScrollViewDelegate{
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
-        singleImage
+        imageView
     }
 }
