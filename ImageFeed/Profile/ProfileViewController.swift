@@ -1,14 +1,7 @@
-//
-//  ProfileViewController.swift
-//  ImageFeed
-//
-//  Created by Vladislav Tudos on 25.12.2023.
-//
-
-import Foundation
 import UIKit
 import Kingfisher
 
+//MARK: - class ProfileViewController
 final class ProfileViewController: UIViewController {
     private let profileService = ProfileService.shared
     private var profileStorage = ProfileStorage()

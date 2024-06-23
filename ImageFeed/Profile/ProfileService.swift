@@ -1,12 +1,6 @@
-//
-//  ProfileService.swift
-//  ImageFeed
-//
-//  Created by Vladislav Tudos on 17.06.2024.
-//
-
 import Foundation
 
+//MARK: - class ProfileService
 final class ProfileService {
     static let shared = ProfileService()
     private init () {}
@@ -43,7 +37,6 @@ final class ProfileService {
             self.task = nil
             switch result {
             case .success(let response):
-                // сохраняем полученные данные в ProfileStorage
                 let resultStorage = ProfileStorage()
                 resultStorage.userName = response.userName
                 resultStorage.firstName = response.firstName ?? "No first name"
@@ -71,5 +64,6 @@ final class ProfileService {
         }
     }
 }
+
 
 

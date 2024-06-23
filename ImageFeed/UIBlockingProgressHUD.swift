@@ -1,26 +1,17 @@
-//
-//  UIBlockingProgressHUD.swift
-//  ImageFeed
-//
-//  Created by Vladislav Tudos on 17.06.2024.
-//
-
+import Foundation
 import UIKit
 import ProgressHUD
 
-final class UIBlockingProgressHUD{
+final class UIBlockingProgressHUD {
     private static var window: UIWindow? {
-            return UIApplication.shared.windows.first
-        }
-    
-    static func show(){
-        window?.isUserInteractionEnabled = true
-        ProgressHUD.animate()
+        return UIApplication.shared.windows.first
     }
-    static func dismiss(){
+    static func show() {
         window?.isUserInteractionEnabled = false
+        ProgressHUD.show()
+    }
+    static func dismiss() {
+        window?.isUserInteractionEnabled = true
         ProgressHUD.dismiss()
     }
-
 }
-

@@ -1,14 +1,8 @@
-//
-//  SplashViewController.swift
-//  ImageFeed
-//
-//  Created by Vladislav Tudos on 11.06.2024.
-//
-
 import Foundation
 import UIKit
 import ProgressHUD
 
+//MARK: - class SplashViewController
 final class SplashViewController: UIViewController, AuthViewControllerDelegate {
     private let oauth2Service = OAuth2Service.shared
     private let profileService = ProfileService.shared
@@ -65,6 +59,7 @@ final class SplashViewController: UIViewController, AuthViewControllerDelegate {
     }
 }
 
+//MARK: - extension SplashViewController
 extension SplashViewController {
     func didAuthenticate(_ vc: AuthViewController) {
         vc.dismiss(animated: true)
@@ -97,10 +92,3 @@ extension SplashViewController {
     }
 }
 
-
-//extension SplashViewController: AuthViewControllerDelegate {
-//    func didAuthenticate(_ vc: AuthViewController) {
-//        vc.dismiss(animated: true)
-//        switchToTabBarController()
-//    }
-//}

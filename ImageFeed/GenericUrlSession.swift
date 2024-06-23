@@ -1,10 +1,3 @@
-//
-//  GenericUrlSession.swift
-//  ImageFeed
-//
-//  Created by Vladislav Tudos on 19.06.2024.
-//
-
 import Foundation
 
 private weak var task: URLSessionTask?
@@ -59,3 +52,5 @@ extension URLSession {
         return task
     }
 }
+
+

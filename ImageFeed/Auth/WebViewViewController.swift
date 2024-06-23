@@ -1,14 +1,8 @@
-//
-//  WebViewViewController.swift
-//  ImageFeed
-//
-//  Created by Vladislav Tudos on 01.06.2024.
-//
-
 import Foundation
 import UIKit
 import WebKit
 
+//MARK: - class WebViewViewController
 final class WebViewViewController: UIViewController {
     private var estimatedObservation: NSKeyValueObservation?
     enum WebViewConstants {
@@ -51,6 +45,7 @@ final class WebViewViewController: UIViewController {
     }
 }
 
+//MARK: - extension WebViewViewController
 extension WebViewViewController:  WKNavigationDelegate {
     
     func webView(
@@ -84,7 +79,4 @@ extension WebViewViewController:  WKNavigationDelegate {
 }
 
 
-protocol WebViewViewControllerDelegate: AnyObject {
-    func webViewViewController(_ vc: WebViewViewController, didAuthenticateWithCode code: String)
-    func webViewViewControllerDidCancel(_ vc: WebViewViewController)
-}
+

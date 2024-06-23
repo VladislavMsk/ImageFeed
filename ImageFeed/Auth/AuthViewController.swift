@@ -2,12 +2,7 @@ import Foundation
 import UIKit
 import ProgressHUD
 
-//MARK: - protocol AuthViewControllerDelegate
-protocol AuthViewControllerDelegate: AnyObject {
-    func didAuthenticate(_ vc: AuthViewController)
-}
-
-//MARK: - AuthViewController
+//MARK: - class AuthViewController
 final class AuthViewController: UIViewController, WebViewViewControllerDelegate {
     private let oauth2TokenStorage = OAuth2TokenStorage()
     private let oauth2Service = OAuth2Service.shared
@@ -46,7 +41,7 @@ final class AuthViewController: UIViewController, WebViewViewControllerDelegate 
     }
     private func createLogo() {
         view.addSubview(authLogo)
-        authLogo.image = UIImage(named: "auth_screen_logo")
+        authLogo.image = UIImage(named: "AuthLogo")
         authLogo.translatesAutoresizingMaskIntoConstraints = false
         authLogo.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         authLogo.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
@@ -83,7 +78,7 @@ final class AuthViewController: UIViewController, WebViewViewControllerDelegate 
         else {
             return
         }
-        //webViewViewController.delegate = self
+        webViewViewController.delegate = self
         show(webViewViewController, sender: nil)
     }
     
@@ -97,10 +92,4 @@ final class AuthViewController: UIViewController, WebViewViewControllerDelegate 
         present(alert, animated: true, completion: nil)
     }
 }
-
-
-
-
-
-
 
