@@ -43,7 +43,7 @@ struct Profile {
     var bio: String?
 }
 
-//MARK: -
+//MARK: - extension Profile
 extension Profile {
     
     init(profileResult: ProfileResult) {

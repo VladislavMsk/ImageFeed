@@ -5,7 +5,8 @@ import SwiftKeychainWrapper
 final class ProfileStorage {
     var userName: String {
         get {
-            return UserDefaults.standard.string(forKey: "userName") ?? "There is no name"        }
+            return UserDefaults.standard.string(forKey: "userName") ?? "There is no name"
+        }
         set {
             UserDefaults.standard.set(newValue, forKey: "userName")
         }

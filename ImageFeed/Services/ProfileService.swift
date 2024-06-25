@@ -1,6 +1,6 @@
 import Foundation
 
-//MARK: - class ProfileService
+//MARK: - ProfileService
 final class ProfileService {
     static let shared = ProfileService()
     private init () {}
@@ -21,14 +21,12 @@ final class ProfileService {
         var request = URLRequest(url: url)
         request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         request.httpMethod = "GET"
-        print(request)
         return request
     }
     
     func fetchProfile(token: String, completion: @escaping (Result<Profile,Error>) -> Void) {
         assert(Thread.isMainThread)
         task?.cancel()
-        print(token)
         guard let request = makeUserProfileRequest(token: token) else {
             completion(.failure(NetworkError.invalidRequest))
             return
@@ -62,6 +60,9 @@ final class ProfileService {
                 }
             }
         }
+    }
+    func cleanProfile() {
+        self.profile = nil
     }
 }
 

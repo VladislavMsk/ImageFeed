@@ -1,15 +1,12 @@
-
 import Foundation
 import SwiftKeychainWrapper
 
 //MARK: - class OAuth2TokenStorage
 final class OAuth2TokenStorage {
-    
     static let shared = OAuth2TokenStorage()
-    
+    private init() {}
     var token: String? {
         get {
-            
             return KeychainWrapper.standard.string(forKey: "OAuth2Token")
         }
         set {
@@ -19,5 +16,8 @@ final class OAuth2TokenStorage {
                 return
             }
         }
+    }
+    func cleanOAuthToken() {
+        self.token = nil
     }
 }

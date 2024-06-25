@@ -4,10 +4,11 @@ import ProgressHUD
 
 //MARK: - class SplashViewController
 final class SplashViewController: UIViewController, AuthViewControllerDelegate {
+    private let storage = OAuth2TokenStorage.shared
     private let oauth2Service = OAuth2Service.shared
     private let profileService = ProfileService.shared
     private let profileImageService = ProfileImageService.shared
-    private let token = OAuth2TokenStorage.shared.token
+    private var token = OAuth2TokenStorage.shared.token
     
     private let imageLaunchScreen = UIImageView()
     
@@ -30,8 +31,8 @@ final class SplashViewController: UIViewController, AuthViewControllerDelegate {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        if token != nil {
-            fetchProfile(token: token ?? "No token at this moment.")
+        if let token = storage.token {
+            fetchProfile(token: token)
         } else {
             switchToAuthViewController()
         }
@@ -41,10 +42,8 @@ final class SplashViewController: UIViewController, AuthViewControllerDelegate {
         let authViewController = AuthViewController()
         authViewController.delegate = self
         authViewController.modalPresentationStyle = .fullScreen
-        
         let navVC = UINavigationController(rootViewController: authViewController)
         navVC.modalPresentationStyle = .fullScreen
-        
         present(navVC, animated: true)
     }
     
@@ -63,32 +62,23 @@ final class SplashViewController: UIViewController, AuthViewControllerDelegate {
 extension SplashViewController {
     func didAuthenticate(_ vc: AuthViewController) {
         vc.dismiss(animated: true)
-        guard let token = OAuth2TokenStorage.shared.token else {
-            return
-        }
-        fetchProfile(token: token)
     }
     private func fetchProfile(token: String) {
         UIBlockingProgressHUD.show()
-        
-        if OAuth2TokenStorage.shared.token != nil {
-            profileService.fetchProfile(token: token, completion: { [weak self] result in
-                UIBlockingProgressHUD.dismiss()
-                DispatchQueue.main.async { [self] in
-                    
-                    switch result {
-                    case .success(_):
-                        self?.profileImageService.fetchProfileImageURL(username: self?.profileService.profile?.username ?? "No username to feth profileImage", completion: { _ in})
-                        self?.switchToTabBarController()
-                    case .failure(_):
-                        print("Failure. Something going wrong in fetch profile.")
-                        break
-                        
-                    }
+        profileService.fetchProfile(token: token) { [weak self] result in
+            UIBlockingProgressHUD.dismiss()
+            DispatchQueue.main.async { [weak self] in
+                switch result {
+                case .success(_):
+                    self?.profileImageService.fetchProfileImageURL(username: self?.profileService.profile?.username ?? "No username to feth profileImage", completion: { _ in})
+                    self?.switchToTabBarController()
+                case .failure(_):
+                    print("Failure. Something going wrong in fetch profile.")
+                    self?.switchToAuthViewController()
                 }
             }
-            )
         }
     }
 }
+
 

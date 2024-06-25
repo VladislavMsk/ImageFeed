@@ -1,31 +1,62 @@
 import UIKit
+import ProgressHUD
+import Kingfisher
 
+//MARK: - class SingleImageViewController
 final class SingleImageViewController: UIViewController {
-    var image: UIImage! {
-        didSet {
-            guard isViewLoaded else { return }
-            imageView.image = image
-            rescaleAndCenterImageInScrollView(image: image)
-        }
-    }
+    private (set) var photos = [Photo]()
+    private let imagesListService = ImagesListService()
     @IBOutlet var backButton: UIButton!
-    
     @IBOutlet var sharingButton: UIButton!
-    
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet var imageView: UIImageView!
+    var image = UIImage()
+    var fullPhoto: String?
     
+    private func setImage() {
+        UIBlockingProgressHUD.show()
+        let url = URL(string: fullPhoto ?? "")
+        imageView.kf.setImage(with: url) { [weak self] result in
+            UIBlockingProgressHUD.dismiss()
+            guard let self = self else {return}
+            switch result {
+            case .success(let imageResult):
+                rescaleAndCenterImageInScrollView(image: imageResult.image)
+            case .failure:
+                showError()
+            }
+        }
+    }
+    
+    private func showError() {
+        let alert = UIAlertController(
+            title: "Something went wrong. Let's try again?",
+            message: "",
+            preferredStyle: .actionSheet)
+        let okActionButton = UIAlertAction(title: "OK", style: .default, handler: { _ in
+            print("allert OK button tapped")
+            alert.dismiss(animated: true)
+            self.dismiss(animated: true)
+        })
+        
+        let cancelActionButton = UIAlertAction(title: "No, thanks.", style: .default, handler: { [weak self] _ in
+            self?.setImage()
+            print("alert NO button tapped")
+            alert.dismiss(animated: true)
+            self?.dismiss(animated: true)
+        })
+        alert.addAction(okActionButton)
+        alert.addAction(cancelActionButton)
+        self.present(alert, animated: true)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         scrollView.minimumZoomScale = 0.1
         scrollView.maximumZoomScale = 1.25
-        imageView.image = image
-        rescaleAndCenterImageInScrollView(image: image)
+        setImage()
         view.backgroundColor = UIColor(named: "YP Black")
     }
-    
-    
     
     @IBAction func didTapBackButton() {
         dismiss(animated: true, completion: nil)

@@ -1,5 +1,3 @@
-
-
 import Foundation
 import UIKit
 
@@ -8,6 +6,7 @@ enum AuthServiceError: Error {
     case invalidRequest
 }
 
+//MARK: - class OAuth2Service
 final class OAuth2Service {
     static let shared = OAuth2Service()
     private init() {}
@@ -62,7 +61,6 @@ final class OAuth2Service {
             switch result {
             case .success(let response):
                 OAuth2TokenStorage.shared.token = response.accessToken
-                print(response.accessToken)
                 DispatchQueue.main.async {
                     completion(.success(response.accessToken))
                 }
