@@ -1,11 +1,12 @@
 import UIKit
+import Foundation
 
-final class ImagesListService {
+final class ImagesListService: ImagesListServiceProtocol {
     private(set) var photos: [Photo] = []
     static let didChangeNotification = Notification.Name(rawValue: "ImagesListServiceDidChange")
-    private var task: URLSessionTask?
+    private var task: URLSessionDataTask?
     private var lastPage = 1
-    static let shared = ImagesListService()
+    static let shared: ImagesListServiceProtocol = ImagesListService()
     private let urlSession = URLSession.shared
     
     private init() {}
@@ -75,7 +76,7 @@ final class ImagesListService {
         task?.resume()
     }
     
-    func changeLike(photoId: String, isLike: Bool, _ completion: @escaping (Result<Void, Error>) -> Void) {
+    func changeLike(photoId: String, isLike: Bool, completion: @escaping (Result<Void, Error>) -> Void) {
         let urlString = "https://api.unsplash.com/photos/\(photoId)/like"
         guard let url = URL(string: urlString) else {
             let errorMessage = "Invalid URL for photoId \(photoId)"
