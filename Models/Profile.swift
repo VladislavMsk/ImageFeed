@@ -10,9 +10,10 @@ struct Profile {
         username = profile.username
         let firstName = profile.firstName ?? ""
         let lastName = profile.lastName ?? ""
+        let profileBio = profile.bio ?? ""
         name = "\(firstName) \(lastName)"
         loginName = "@\(profile.username)"
-        bio = profile.bio
+        bio = "\(profileBio)"
     }
 }
 
